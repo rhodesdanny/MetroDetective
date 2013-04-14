@@ -1,0 +1,175 @@
+﻿<Page x:Name="page"
+    x:Class="MetroDetective.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MetroDetective"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:viewModel="using:MetroDetective.ViewModel"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <viewModel:CanvasPageViewModel x:Key="vm"></viewModel:CanvasPageViewModel>
+        <Storyboard x:Name="Storyboard1">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="canvasLeft">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="180"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="360"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="canvasLeft">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="canvasLeft">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.05"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="canvasRight">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="180"/>
+        		<SplineDoubleKeyFrame KeyTime="0:0:1" Value="360"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="canvasRight">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="0.05"/>
+        		<SplineDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="canvasRight">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="0.05"/>
+        		<SplineDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="canvasLeft">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="canvasRight">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0.1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid DataContext="{StaticResource vm}">
+    	<Grid.Background>
+    		<ImageBrush ImageSource="Assets/paintings/BG.png" Stretch="UniformToFill"/>
+    	</Grid.Background>
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup">
+    			<VisualStateGroup.Transitions>
+    				<VisualTransition GeneratedDuration="0:0:0.5">
+    					<VisualTransition.GeneratedEasingFunction>
+    						<CubicEase EasingMode="EaseIn"/>
+    					</VisualTransition.GeneratedEasingFunction>
+    				</VisualTransition>
+    				<VisualTransition From="PlayingState" GeneratedDuration="0" To="FinishState"/>
+    				<VisualTransition From="FinishState" GeneratedDuration="0" To="MainMenuState"/>
+    			</VisualStateGroup.Transitions>
+    			<VisualState x:Name="MainMenuState"/>
+    			<VisualState x:Name="PlayingState">
+    				<Storyboard>
+    					<DoubleAnimation Duration="0" To="{Binding ScreenHeightNeg}" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="MainMenuGrid" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="{Binding ScreenHeightNeg}" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="FinishGrid" d:IsOptimized="True"/>
+    				</Storyboard>
+    			</VisualState>
+    			<VisualState x:Name="FinishState">
+    				<Storyboard>
+                        <DoubleAnimation Duration="0" To="{Binding ScreenHeightNeg}" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="MainMenuGrid" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="image" d:IsOptimized="True">
+                        	<DoubleAnimation.EasingFunction>
+                        		<BounceEase Bounciness="2" Bounces="4"/>
+                        	</DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation Duration="0:0:1" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="image" d:IsOptimized="True">
+                        	<DoubleAnimation.EasingFunction>
+                        		<BounceEase Bounciness="2" Bounces="4"/>
+                        	</DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+    				</Storyboard>
+    			</VisualState>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
+
+
+        <Grid x:Name="NormalState" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+            	<RowDefinition Height="716*"/>
+            	<RowDefinition Height="53*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+            	<ColumnDefinition/>
+            	<ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Row="0" Grid.Column="0">
+        	    <Canvas x:Name="canvasLeft" Margin="20,20,20,7.5" Tapped="CanvasLeftTapped" RenderTransformOrigin="0.5,0.5" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
+        		    <Canvas.RenderTransform>
+        			    <CompositeTransform/>
+        		    </Canvas.RenderTransform>
+        		    <Canvas.Background>
+        			    <ImageBrush x:Name="LeftPaintingBrush" ImageSource="{Binding LeftPaintingName}" />
+        		    </Canvas.Background>
+        	    </Canvas>
+			</Grid>
+
+            <Grid Row="0" Grid.Column="1">
+                <Canvas x:Name="canvasRight" Margin="20,20,20,7.5" Grid.Column="1" Tapped="CanvasRightTapped" RenderTransformOrigin="0.5,0.5" Width="{Binding CanvasWidth}" Height="{Binding CanvasHeight}">
+                    <Canvas.RenderTransform>
+        			    <CompositeTransform/>
+        		    </Canvas.RenderTransform>
+        		    <Canvas.Background>
+        			    <ImageBrush x:Name="RightPaintingBrush" ImageSource="{Binding RightPaintingName}" />
+        		    </Canvas.Background>
+        	    </Canvas>
+			</Grid>
+            <Grid Row="1" ColumnSpan="2" Visibility="Collapsed">
+        	    <TextBlock x:Name="tb_XY" HorizontalAlignment="Left" Height="19" Margin="41,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="127"/>
+                <CheckBox x:Name="ckbox_AddSpots" IsChecked="False"/>
+            </Grid>
+        </Grid>
+        
+        <Grid x:Name="FinishGrid" RenderTransformOrigin="0.5,0.5" Tapped="FinishedGrid_OnTapped">
+            <Grid.RenderTransform>
+        		<CompositeTransform/>
+        	</Grid.RenderTransform>
+            <Image x:Name="image" Source="Assets/labels/cert.jpg" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+            	<Image.RenderTransform>
+            		<CompositeTransform ScaleX="0.1" ScaleY="0.1"/>
+            	</Image.RenderTransform>
+            </Image>
+        </Grid>
+        <Grid x:Name="MainMenuGrid" RenderTransformOrigin="0.5,0.5" Tapped="MainMenuGrid_OnTapped">
+        	<Grid.Background>
+        		<ImageBrush ImageSource="Assets/paintings/menuBg.jpg" Stretch="UniformToFill"/>
+        	</Grid.Background>
+    		<Grid.RenderTransform>
+    			<CompositeTransform/>
+    		</Grid.RenderTransform>
+    	</Grid>
+        <Grid x:Name="SplitScreen" RenderTransformOrigin="0.5,0.5" Background="White" Visibility="Collapsed" >
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="Assets/labels/splitScreen.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" />
+			<TextBlock Text="Game Paused" FontFamily="Old English Text MT" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+		</StackPanel>
+        </Grid>
+
+    </Grid>
+    <Page.BottomAppBar>
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="menuButton"  Style="{StaticResource  AllAppsAppBarButtonStyle}" AutomationProperties.Name="Menu" Click="btn_back_Click"/>
+                    <!--<Button Style="{StaticResource AddAppBarButtonStyle}" Click="btn_addSpot_Click" Visibility="Collapsed" />
+                    <Button Style="{StaticResource ContactInfoAppBarButtonStyle}" Click="save_allSpot_Click" Visibility="Collapsed" />
+                    <Button Style="{StaticResource NextAppBarButtonStyle}" Click="btn_next_page_Click" Visibility="Collapsed" />-->
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="musicPause"  Style="{StaticResource PauseAppBarButtonStyle}" AutomationProperties.Name="Pause Music" Click="btn_pause_Click"/>					
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="hintButton" Style="{StaticResource ZoomAppBarButtonStyle}" AutomationProperties.Name="Hints (3 Left)" Click="btn_hint_Click"  />
+                    <Button x:Name="helpButton"  Style="{StaticResource HelpAppBarButtonStyle}" Click="btn_Help_Click"/>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+
+</Page>
