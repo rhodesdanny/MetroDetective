@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage.Streams;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -77,6 +78,11 @@ namespace MetroDetective
 
             private void WindowSizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
             {
+                CheckScreenState();
+            }
+
+            private void CheckScreenState()
+            {
                 // Obtain view state by explicitly querying for it
                 ApplicationViewState myViewState = ApplicationView.Value;
                 if (myViewState == ApplicationViewState.FullScreenLandscape)
@@ -88,7 +94,7 @@ namespace MetroDetective
                 {
                     ShowHideAppBarButtons(true);
                     SplitScreen.Visibility = Visibility.Visible;
-                }             
+                }
             }
 
         public string ToJson(object obj)
@@ -110,16 +116,19 @@ namespace MetroDetective
                     bottomAppBar.IsOpen = false;
                     bottomAppBar.IsSticky = false;
                     ChangePaintings(_viewModel.PaintingNumbers[0]);
+                    CheckScreenState();
                     break;
                 case "PlayingState":
                     ShowHideAppBarButtons(false);
                     bottomAppBar.IsOpen = true;
                     bottomAppBar.IsSticky = true;
+                    CheckScreenState();
                     break;
                 case "FinishState":
                     ShowHideAppBarButtons(true);
                     bottomAppBar.IsOpen = false;
                     bottomAppBar.IsSticky = false;
+                    CheckScreenState();
                     break;
             }
             VisualStateManager.GoToState(this, state, true);
