@@ -38,7 +38,7 @@ namespace MetroDetective
         public CanvasPageViewModel _viewModel;
         private MediaElement Music;
         private bool IsMusicPlaying = true;
-
+        private bool CreateGameMode = true;
         public MainPage()
         {
             this.InitializeComponent();
@@ -53,8 +53,16 @@ namespace MetroDetective
         {
             // Register for the viewstatechanged event
             // Register for the window resize event
-            Window.Current.SizeChanged += WindowSizeChanged;     
+            if (CreateGameMode)
+            {
+                CreateGamePanel.Visibility=Visibility.Visible;
+            }
+            else
+            {
+                CreateGamePanel.Visibility = Visibility.Collapsed;
+            }
 
+            Window.Current.SizeChanged += WindowSizeChanged;     
             _viewModel = new CanvasPageViewModel();
             LoadBackGroundMusic();
             GoToState("MainMenuState");
@@ -285,7 +293,7 @@ namespace MetroDetective
 
         private void AddSpotToCurrentPainting(int x, int y)
         {
-            if (!(bool)ckbox_AddSpots.IsChecked) 
+            if (!CreateGameMode) 
                 return; 
 
             if (_viewModel.CurrentPaintingSpots == null)
@@ -315,7 +323,7 @@ namespace MetroDetective
 
         private void AddCurrentPaintingToGameSpotsList(PaintingHotSpots currentSpots)
         {
-            if (ckbox_AddSpots.IsChecked != null && !(bool)ckbox_AddSpots.IsChecked) { return; }
+            if (!CreateGameMode) { return; }
 
             if (_viewModel.GameSpotsList == null)
             {
@@ -357,7 +365,7 @@ namespace MetroDetective
         private void CanvasLeftTapped(object sender, TappedRoutedEventArgs e)
         {
 
-            if (ckbox_AddSpots.IsChecked != null && (bool) ckbox_AddSpots.IsChecked)
+            if (CreateGameMode) 
             {
                 int x = (int) e.GetPosition(canvasLeft).X;
                 int y = (int) e.GetPosition(canvasLeft).Y;
@@ -380,7 +388,7 @@ namespace MetroDetective
         {
 
 
-            if (ckbox_AddSpots.IsChecked != null && (bool) ckbox_AddSpots.IsChecked)
+            if (CreateGameMode) 
             {
                 int x = (int) e.GetPosition(canvasRight).X;
                 int y = (int) e.GetPosition(canvasRight).Y;
