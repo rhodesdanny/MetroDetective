@@ -16,9 +16,9 @@ namespace MetroDetective.Common
         public const string GameCompleteTitle = @"Well Done!!!";
 
         public const string HelpMsg =
-            "\n" + "1) Click on the either screen to spot the differences." + "\n" + "\n" +
+            "\n" + "1) Click on either screen to spot the differences." + "\n" + "\n" +
             "2) You need to find all 5 differences to clear a level." + "\n" + "\n" +
-            "3) click hint to show the next difference.";
+            "3) Click 'Hints' if you need some help to spot the differences";
 
         public const int HotSpotNumbers = 5;
     }

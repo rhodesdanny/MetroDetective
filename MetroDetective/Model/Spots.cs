@@ -19,14 +19,18 @@ namespace MetroDetective.Model
     {
         public PaintingHotSpots()
         {
-            PaintingDescription = "Painting Description";
+            Description = "Painting Description";
             PaintingName = "name.jpg";
+            Title = "Titel";
+            Artist = "artist";
             Spots = new List<HotSpot>();
         }
 
         public List<HotSpot> Spots { get; set; }
         public string PaintingName { get; set; }
-        public string PaintingDescription { get; set; }
+        public string Title { get; set; }
+        public string Artist { get; set; }
+        public string Description { get; set; }
     }
 
     public class GameHotSpots

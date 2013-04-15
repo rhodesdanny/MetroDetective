@@ -39,6 +39,10 @@ namespace MetroDetective
         private MediaElement Music;
         private bool IsMusicPlaying = true;
         private bool CreateGameMode = false;
+        private string _states="MainMenuState";
+
+
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -83,12 +87,21 @@ namespace MetroDetective
                 menuButton.Visibility = Visibility.Collapsed;
                 hintButton.Visibility = Visibility.Collapsed;
                 helpButton.Visibility = Visibility.Collapsed;
+                CommentButton.Visibility = Visibility.Collapsed;
+                musicPause.Visibility = Visibility.Collapsed;
+                BottomAppBar.Visibility = Visibility.Collapsed;
             }
             else
             {
                 menuButton.Visibility = Visibility.Visible;
                 hintButton.Visibility = Visibility.Visible;
                 helpButton.Visibility = Visibility.Visible;
+                CommentButton.Visibility = Visibility.Visible;
+                musicPause.Visibility = Visibility.Visible;
+                BottomAppBar.Visibility = Visibility.Visible;
+                AutomationProperties.SetName(hintButton, "Hints" + " (" + _viewModel.HintsLeft + " Left)");
+                BottomAppBar.IsOpen = true;
+                bottomAppBar.IsSticky = true;
             }
         }
 
@@ -103,7 +116,10 @@ namespace MetroDetective
                 ApplicationViewState myViewState = ApplicationView.Value;
                 if (myViewState == ApplicationViewState.FullScreenLandscape)
                 {
-                    ShowHideAppBarButtons(false);
+                    if (!_states.Equals("MainMenuState"))
+                    {
+                        ShowHideAppBarButtons(false);
+                    }
                     SplitScreen.Visibility = Visibility.Collapsed;
                 }
                 else
@@ -124,9 +140,9 @@ namespace MetroDetective
             switch (state)
             {
                 case "MainMenuState":
+                    _states = state;
                     ResetCanvas();
                     _viewModel.HintsLeft = 3;
-                    ShowHideAppBarButtons(true);
                     AutomationProperties.SetName(hintButton, "Hints" + " (" + _viewModel.HintsLeft + " Left)");
                     if (CreateGameMode)
                     {
@@ -140,14 +156,17 @@ namespace MetroDetective
                     bottomAppBar.IsSticky = false;
                     ChangePaintings(_viewModel.PaintingNumbers[0]);
                     CheckScreenState();
+                    ShowHideAppBarButtons(true);
                     break;
                 case "PlayingState":
+                    _states = state;
                     ShowHideAppBarButtons(false);
                     bottomAppBar.IsOpen = true;
                     bottomAppBar.IsSticky = true;
                     CheckScreenState();
                     break;
                 case "FinishState":
+                    _states = state;
                     ShowHideAppBarButtons(true);
                     bottomAppBar.IsOpen = false;
                     bottomAppBar.IsSticky = false;
@@ -528,6 +547,11 @@ namespace MetroDetective
             }
         }
 
+        private void btn_cmt_Click(object sender, RoutedEventArgs e)
+        {
+            var helpDialog = new MessageDialog("By: " + _viewModel.CurrentPaintingSpots.Artist + "\n" + "\n" + _viewModel.CurrentPaintingSpots.Description, _viewModel.CurrentPaintingSpots.Title);
+            helpDialog.ShowAsync();
+        }
     }
 
 }

@@ -150,8 +150,8 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button x:Name="menuButton"  Style="{StaticResource  AllAppsAppBarButtonStyle}" AutomationProperties.Name="Menu" Click="btn_back_Click"/>
-                    
+                    <Button x:Name="menuButton"  Style="{StaticResource PreviousAppBarButtonStyle}" AutomationProperties.Name="Back" Click="btn_back_Click"/>
+                    <Button x:Name="musicPause"  Style="{StaticResource PauseAppBarButtonStyle}" AutomationProperties.Name="Pause Music" Click="btn_pause_Click"/>
                     <Grid  x:Name="CreateGamePanel">
                         <Grid.RowDefinitions>                   
                             <RowDefinition />
@@ -178,11 +178,12 @@
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="musicPause"  Style="{StaticResource PauseAppBarButtonStyle}" AutomationProperties.Name="Pause Music" Click="btn_pause_Click"/>					
+                    <Button x:Name="hintButton" Style="{StaticResource ZoomAppBarButtonStyle}" AutomationProperties.Name="Hints (3 Left)" Click="btn_hint_Click"  />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button x:Name="hintButton" Style="{StaticResource ZoomAppBarButtonStyle}" AutomationProperties.Name="Hints (3 Left)" Click="btn_hint_Click"  />
+
+                    <Button x:Name="CommentButton" Style="{StaticResource CommentAppBarButtonStyle}" AutomationProperties.Name="Comment" Click="btn_cmt_Click"/>
                     <Button x:Name="helpButton"  Style="{StaticResource HelpAppBarButtonStyle}" Click="btn_Help_Click"/>
                 </StackPanel>
             </Grid>

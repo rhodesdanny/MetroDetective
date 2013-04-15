@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="61f7b027-df3c-413a-898c-c60f0ce87423" Publisher="CN=DannyZ" Version="1.0.0.4" />
+  <Identity Name="61f7b027-df3c-413a-898c-c60f0ce87423" Publisher="CN=DannyZ" Version="1.0.0.7" />
   <Properties>
     <DisplayName>MetroDetective</DisplayName>
     <PublisherDisplayName>Danny Zhao</PublisherDisplayName>
@@ -16,7 +16,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MetroCurator.App">
       <VisualElements DisplayName="Metro Curator" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Metro Curator is a &quot;Spot the differeces&quot; style game" ForegroundText="dark" BackgroundColor="white" ToastCapable="false">
-        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.png" ShortName="Metro Curator Game" />
+        <DefaultTile ShowName="wideLogoOnly" WideLogo="Assets\WideLogo.png" ShortName="Metro Curator Game" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="white" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />
