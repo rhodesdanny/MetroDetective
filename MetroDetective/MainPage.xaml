@@ -48,7 +48,7 @@
 
     <Grid DataContext="{StaticResource vm}">
     	<Grid.Background>
-    		<ImageBrush ImageSource="Assets/paintings/BG.png" Stretch="UniformToFill"/>
+    		<ImageBrush ImageSource="Assets/paintings/BG.jpg" Stretch="UniformToFill"/>
     	</Grid.Background>
     	<VisualStateManager.VisualStateGroups>
     		<VisualStateGroup x:Name="VisualStateGroup">
@@ -151,12 +151,30 @@
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button x:Name="menuButton"  Style="{StaticResource  AllAppsAppBarButtonStyle}" AutomationProperties.Name="Menu" Click="btn_back_Click"/>
-                    <StackPanel x:Name="CreateGamePanel">
-                        <Button Style="{StaticResource AddAppBarButtonStyle}" Click="btn_addSpot_Click" />
-                        <Button Style="{StaticResource ContactInfoAppBarButtonStyle}" Click="save_allSpot_Click" />
-                        <Button Style="{StaticResource NextAppBarButtonStyle}" Click="btn_next_page_Click" />
-                        <TextBlock x:Name="tb_XY" HorizontalAlignment="Left" Height="19" Margin="41,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="spot" VerticalAlignment="Top" Width="127"/>
-                    </StackPanel>
+                    
+                    <Grid  x:Name="CreateGamePanel">
+                        <Grid.RowDefinitions>                   
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Row="0" Grid.Column="0">
+                            <Button Style="{StaticResource AddAppBarButtonStyle}" Click="btn_addSpot_Click" />
+                        </Grid>
+                        <Grid Row="0" Grid.Column="1">
+                            <Button Style="{StaticResource ContactInfoAppBarButtonStyle}" Click="save_allSpot_Click" />
+                        </Grid>
+                            <Grid Row="0" Grid.Column="2">
+                                <Button Style="{StaticResource NextAppBarButtonStyle}" Click="btn_next_page_Click" />
+                        </Grid>
+                        <Grid Row="0" Grid.Column="3">
+                                    <TextBlock x:Name="tb_XY" HorizontalAlignment="Left" Height="19" Margin="41,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="spot" VerticalAlignment="Top" Width="127"/>
+                        </Grid>
+                    </Grid>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

@@ -149,7 +149,13 @@
     <Content Include="Assets\paintings\2Right.jpg" />
     <Content Include="Assets\paintings\3Left.JPG" />
     <Content Include="Assets\paintings\3Right.JPG" />
-    <Content Include="Assets\paintings\BG.png" />
+    <Content Include="Assets\paintings\4Right.jpg" />
+    <Content Include="Assets\paintings\4Left.jpg" />
+    <Content Include="Assets\paintings\5Left.JPG" />
+    <Content Include="Assets\paintings\5Right.JPG" />
+    <Content Include="Assets\paintings\6Left.JPG" />
+    <Content Include="Assets\paintings\6Right.JPG" />
+    <Content Include="Assets\paintings\BG.jpg" />
     <Content Include="Assets\paintings\menuBg.jpg" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\Sounds\music.mp3" />

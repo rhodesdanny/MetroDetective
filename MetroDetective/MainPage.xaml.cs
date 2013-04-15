@@ -38,7 +38,7 @@ namespace MetroDetective
         public CanvasPageViewModel _viewModel;
         private MediaElement Music;
         private bool IsMusicPlaying = true;
-        private bool CreateGameMode = true;
+        private bool CreateGameMode = false;
         public MainPage()
         {
             this.InitializeComponent();
@@ -53,19 +53,27 @@ namespace MetroDetective
         {
             // Register for the viewstatechanged event
             // Register for the window resize event
+
+
+            Window.Current.SizeChanged += WindowSizeChanged;     
+            
             if (CreateGameMode)
             {
-                CreateGamePanel.Visibility=Visibility.Visible;
+                _viewModel = new CanvasPageViewModel();
+                CreateGamePanel.Visibility = Visibility.Visible;
+                _viewModel.GameSpotsList = new GameHotSpots();
+                _viewModel.CurrentPaintingSpots = new PaintingHotSpots();
             }
             else
             {
+                _viewModel = new CanvasPageViewModel(true);
                 CreateGamePanel.Visibility = Visibility.Collapsed;
+                LoadBackGroundMusic();
+               
             }
 
-            Window.Current.SizeChanged += WindowSizeChanged;     
-            _viewModel = new CanvasPageViewModel();
-            LoadBackGroundMusic();
             GoToState("MainMenuState");
+
         }
 
         private void ShowHideAppBarButtons(bool isHide)
@@ -120,7 +128,14 @@ namespace MetroDetective
                     _viewModel.HintsLeft = 3;
                     ShowHideAppBarButtons(true);
                     AutomationProperties.SetName(hintButton, "Hints" + " (" + _viewModel.HintsLeft + " Left)");
-                    _viewModel = new CanvasPageViewModel();
+                    if (CreateGameMode)
+                    {
+                        _viewModel = new CanvasPageViewModel();                       
+                    }
+                    else
+                    {
+                        _viewModel = new CanvasPageViewModel(true);
+                    }
                     bottomAppBar.IsOpen = false;
                     bottomAppBar.IsSticky = false;
                     ChangePaintings(_viewModel.PaintingNumbers[0]);

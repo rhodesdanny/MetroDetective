@@ -20,7 +20,7 @@ namespace MetroDetective.ViewModel
         {
             ResetPage();
 
-            PaintingNumbers = new List<int> { 1, 2, 3};
+            PaintingNumbers = new List<int> { 1, 2, 3,4,5,6};
 
             CurrentPaintingNumber = PaintingNumbers[0];
             LevelFinished = false;
@@ -39,10 +39,13 @@ namespace MetroDetective.ViewModel
             ScreenWidthNeg = bounds.Width*-1;
             CanvasHeight = ScreenHeight * 80 /100;
             CanvasWidth = ScreenWidth * 48 / 100;
-            HintsLeft = 3;
-            LoadGameSpotsAsync();
+            HintsLeft = 3;            
         }
 
+        public CanvasPageViewModel(bool play) : this()
+        {
+            LoadGameSpotsAsync();
+        }
         public void ResetPage()
         {
             TagsLeft = new List<Image>();
